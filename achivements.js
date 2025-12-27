@@ -1,0 +1,1 @@
+let achivements = ["", "Upgraded", "CentiSecond"]

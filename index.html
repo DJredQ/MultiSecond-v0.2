@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiSecond</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/break_infinity.js@2"></script>
+</head>
+<body>
+    <div id="tabbuttons">
+        <button id="mainscreenbutton">Main</button>
+        <button id="achievementbutton">Achivements</button>
+        <button id="enhancementbutton">Enhancements</button>
+    </div>
+    <div>
+        <p id="achievementdisplay">achievemts provide a multiplier to<br>point gain: 1.00x</p>
+    </div>
+    <div id="mainscreen">
+        <p id="display">0</p>
+        <div class="buttons">
+            <button id="upgrade1">cost:10<br>+1 p/s</button>
+            <button id="upgrade2">cost:500<br>Upgrade 1 +0.5</button>
+            <button id="upgrade3">cost:3500<br>Upgrade 2 x1.5</button>
+            <button id="upgrade4">cost:100000<br>All cost -15%</button>
+        </div>
+        <div>
+            <button id="byteupgrade">cost : 1000 Byte upgrade</button>
+        </div>
+        <div class="tooltips">
+            <div id="tooltip1"></div>
+            <div id="tooltip2"></div>
+            <div id="tooltip3"></div>
+            <div id="tooltip4"></div>
+            <div id="tooltipbyte"></div>
+        </div>
+        <div class="bytedisplays">
+            <div id="bytedisplay"></div>
+        </div>
+        <div>
+            <button id="polybit">get a polybit for 6 Byte upgrades<br>Reset your progress for a better byte multiplier</button>
+        </div>
+    </div>
+    <div id="achievements">
+        <div class="row" id="row1">
+            <div id="tile1" class="tileincomplete"><img src="achievement_images/achievement1.png"></div>
+            <div id="tile2" class="tileincomplete"><img src="achievement_images/achievement2.png"></div>
+            <div id="tile3" class="tileincomplete"><img src="achievement_images/achievement3.png"></div>
+            <div id="tile4" class="tileincomplete"><img src="achievement_images/achievement4.png"></div>
+            <div id="tile5" class="tileincomplete"><img src="achievement_images/achievement5.png"></div>
+            <div id="tile6" class="tileincomplete"><img src="achievement_images/achievement6.png"></div>
+            <div id="tile7" class="tileincomplete"><img src="achievement_images/achievement7.png"></div>
+            <div id="tile8" class="tileincomplete"><img src="achievement_images/achievement8.png"></div>
+        </div>
+        <div class="row" id="row2">
+            <div id="tile9" class="tileincomplete"><img src="achievement_images/achievement9.png"></div>
+            <div id="tile10" class="tileincomplete"><img src="achievement_images/achievement10.png"></div>
+            <div id="tile11" class="tileincomplete"><img src="achievement_images/achievement11.png"></div>
+            <div id="tile12" class="tileincomplete"><img src="achievement_images/achievement12.png"></div>
+            <div id="tile13" class="tileincomplete"><img src="achievement_images/achievement13.png"></div>
+            <div id="tile14" class="tileincomplete"><img src="achievement_images/achievement14.png"></div>
+            <div id="tile15" class="tileincomplete"><img src="achievement_images/achievement15.png"></div>
+            <div id="tile16" class="tileincomplete"><img src="achievement_images/achievement16.png"></div>
+        </div>
+    </div>
+    <div id="enhancements">
+        <button id="enhancement1">cost:10No points<br>Points gain x5</button>
+        <button id="enhancement2">cost:2NoDe points<br>Upgrade 1 cost /200</button>
+        <button id="enhancement3">cost:20Vt points<br>Upgrade 2 effect 25% better</button>
+        <button id="enhancement4">cost:1NoQg points<br>Byte upgrade cheaper per 2 bought</button>
+        <button id="enhancement5">cost:15UQq points<br>Points boosts itself<br>currently:x1.00</button>
+        <button id="enhancement6">cost:1Sa points<br>Upgrade 1-3 90% cheaper</button>
+        <button id="enhancement7">cost:1e350 points<br>Upgrade 3 is better based on total upgrades bought<br>currently:x1.00</button>
+        <button id="enhancement8">cost:300SpSa points<br>Upgrade 2 effect ^1.2</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
