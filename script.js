@@ -11,7 +11,7 @@ let points_add_add_achievementmult = new Decimal(1)
 let points_add_add_add_achievementmult = new Decimal(1)
 let upg3_base_achievementmult = new Decimal(1)
 
-let points = new Decimal("1")
+let points = new Decimal("1e2500")
 
 let points_add = new Decimal("0")
 let points_add_add = new Decimal("1")
@@ -31,19 +31,27 @@ let buyed1 = 0
 let buyed2 = 0
 let buyed3 = 0
 let buyed4 = 0
+let buyed5 = 0
 let buyedbyte = 0
-let buyedpoly = 0
+let buyedbit = 0
+
+let buyed1r = 1
+let buyed1mult = 1
+
+let buyed1_enhancementmult = 0
 
 let cost1 = new Decimal(1)
 let cost2 = new Decimal(2500)
 let cost3 = new Decimal(360000)
 let cost4 = new Decimal(10000000000)
+let cost5 = new Decimal("1e2000");
 let costbyte = new Decimal(10)
 
 let cost1mult = new Decimal(1)
 let cost2mult = new Decimal(1)
 let cost3mult = new Decimal(1)
 let cost4mult = new Decimal(1)
+let cost5mult = new Decimal(1)
 let costbytemult = new Decimal(1)
 
 let cost4_achievementmult = new Decimal(1)
@@ -52,6 +60,7 @@ let cost1_enhancementmult = new Decimal(1)
 let cost2_enhancementmult = new Decimal(1)
 let cost3_enhancementmult = new Decimal(1)
 let cost4_enhancementmult = new Decimal(1)
+let cost5_enhancementmult = new Decimal(1)
 let costbyte_enhancementmult = new Decimal(1)
 
 let points_add_add_add_enhancementpower = new Decimal("1")
@@ -60,18 +69,20 @@ let scl1 = new Decimal(1.01)
 let scl2 = new Decimal(2.2)
 let scl3 = new Decimal(4.6)
 let scl4 = new Decimal(9.6)
+let scl5 = new Decimal("1e400")
 let sclbyte = new Decimal(3)
 
 let costr1 = cost1.times(cost1mult);
 let costr2 = cost2.times(cost2mult);
 let costr3 = cost3.times(cost3mult);
 let costr4 = cost4.times(cost4mult).times(cost4_achievementmult);
+let costr5 = cost5.times(cost5mult);
 let costrbyte = costbyte.times(costbytemult);
 
-let costbit = 25
-let bitscale = 15
+let costbit = 30
+let bitscale = 30
 
-let enccomp = [true ,false, false, false, false, false, false, false, false]
+let enccomp = [true ,false, false, false, false, false, false, false, false, false]
 
 let points_add_enhancementmult = new Decimal(1)
 let points_add_enhancementmult5 = new Decimal(1)
@@ -97,12 +108,14 @@ const enhancement5 = document.getElementById("enhancement5")
 const enhancement6 = document.getElementById("enhancement6")
 const enhancement7 = document.getElementById("enhancement7")
 const enhancement8 = document.getElementById("enhancement8")
+const enhancement9 = document.getElementById("enhancement9")
 
 const counter = document.getElementById("display")
 const upgrade1 = document.getElementById("upgrade1")
 const upgrade2 = document.getElementById("upgrade2")
 const upgrade3 = document.getElementById("upgrade3")
 const upgrade4 = document.getElementById("upgrade4")
+const upgrade5 = document.getElementById("upgrade5")
 const byte = document.getElementById('byteupgrade')
 const bytedisplay = document.getElementById('bytedisplay')
 const polybit = document.getElementById('polybit')
@@ -112,6 +125,7 @@ const tooltip2 = document.getElementById('tooltip2')
 const tooltip3 = document.getElementById('tooltip3')
 const tooltip4 = document.getElementById('tooltip4')
 const tooltipbyte = document.getElementById('tooltipbyte')
+const tooltipbit = document.getElementById('tooltipbit')
 
 const achievementdisplay = document.getElementById('achievementdisplay')
 
@@ -131,6 +145,8 @@ const tile13 = document.getElementById('tile13')
 const tile14 = document.getElementById('tile14')
 const tile15 = document.getElementById('tile15')
 const tile16 = document.getElementById('tile16')
+
+const tile1info = document.getElementById('tile1info')
 
 function format(decimal, precision = 2) {
     decimal = new Decimal(decimal);
@@ -157,19 +173,21 @@ function format(decimal, precision = 2) {
 }
 
 setInterval(() => {
-    points = points.add(points_addr.div(20));
     seconds_played += 0.05;
     tile13_seconds_played += 0.05;
+    points = points.add(points_addr.div(20));
 }, 50);
 
 setInterval(() => {
     costr1 = cost1.times(cost1mult).times(cost1_enhancementmult);
     costr2 = cost2.times(cost2mult).times(cost2_enhancementmult);
     costr3 = cost3.times(cost3mult).times(cost3_enhancementmult);
-    costr4 = cost4.times(cost4mult).times(cost4_achievementmult);
+    costr4 = cost4.times(cost4mult).times(cost4_achievementmult);    
+    costr5 = cost5.times(cost5mult)
+
     costrbyte = costbyte.times(costbytemult).times(costbyte_enhancementmult);
 
-    points_addr = points_add.times(points_add_addr)
+    points_addr = points_add_addr.times(buyed1r)
     if (tilecomp[2]) {
         points_add_addr = points_add_add.times(points_add_add_addr.pow(buyed2)).times(bytemultr).times(points_add_enhancementmult).times(points_add_achievementmult).times(points_add_enhancementmult5).times(points_add_add_achievementmult).times(achievementmult);
     } else {
@@ -179,13 +197,19 @@ setInterval(() => {
     upg3_baser = upg3_base.times(upg3_base_achievementmult).times(upg3_base_enhancementmult)
     bytemultr = bytemult.times(bytemult_achievementmult)
 
+    buyed1mult = 1 + buyed5
+
+    buyed1r = buyed1 * (buyed1_enhancementmult + buyed1mult)
+
+    points_add_achievementmult = new Decimal(1.02 ** buyed1r)
     achievementmult = new Decimal(1.55 ** achievementsdone)
 
     counter.textContent = format(points.mul(100).div(100));
     upgrade1.innerHTML = "cost:" + format(costr1) + " <br> +" + format(points_add_addr) +" p/s";
     upgrade2.innerHTML = "cost:" + format(costr2) + " <br> Upgrade 1 x" + format(points_add_add_addr);
     upgrade3.innerHTML = "cost:" + format(costr3) + " <br> Upgrade 2 +" + format(upg3_baser);
-    upgrade4.innerHTML = "cost:" + format(costr4) + "<br> All cost -5%";
+    upgrade4.innerHTML = "cost:" + format(costr4) + "<br> All cost -15%";
+    upgrade5.innerHTML = "cost:" + format(costr5) + "<br> Upgrade 1 gain +1";
     byte.innerHTML = "cost:" + format(costrbyte) + " Byte upgrade";
     polybit.innerHTML = "get a polybit for " + costbit + " Byte upgrades<br>Reset your progress for a better byte multiplier";
 
@@ -193,15 +217,17 @@ setInterval(() => {
     upgrade2.style.backgroundColor = points.gte(costr2) ? 'green' : 'black';
     upgrade3.style.backgroundColor = points.gte(costr3) ? 'green' : 'black';
     upgrade4.style.backgroundColor = points.gte(costr4) ? 'green' : 'black';
+    upgrade5.style.backgroundColor = points.gte(costr5) ? 'green' : 'black';
     byte.style.backgroundColor = points.gte(costrbyte) ? 'green' : 'black';
     polybit.style.backgroundColor = (buyedbyte >= costbit) ? 'green' : 'black';
 
-    tooltip1.innerHTML = buyed1 + ' bought';
+    tooltip1.innerHTML = buyed1r + ' bought';
     tooltip2.innerHTML = buyed2 + ' bought';
     tooltip3.innerHTML = buyed3 + ' bought';
     tooltip4.innerHTML = buyed4 + ' bought';
     tooltipbyte.innerHTML = buyedbyte + ' bought';
     bytedisplay.innerHTML = "byte multiplier: x" + format(bytemultr, 4);
+    tooltipbit.innerHTML = "you have " + buyedbit + " polybits"
 
     achievementdisplay.innerHTML = "achievemts provide a multiplier to<br>point gain: " + format(achievementmult.mul(1000).div(1000)) + "x"
 }, 5);
@@ -304,7 +330,7 @@ setInterval(() => {
         upg3_base_achievementmult = upg3_base_achievementmult.times(1.1)
         achievementsdone += 1
     }
-    if (buyedpoly >= 9 && tilecomp[16] === false){
+    if (buyedbit >= 9 && tilecomp[16] === false){
         tile16.classList.remove("tileincomplete")
         tile16.classList.add("tilecomplete")
         tilecomp[16] = true
@@ -322,7 +348,7 @@ setInterval(() => {
     if (points.gte(2e64) || enccomp[3] === true) {
         enhancement3.style.backgroundColor = "rgba(21, 104, 212, 1)"
     } else {enhancement3.style.backgroundColor = "black"}
-    if (points.gte(1e117) || enccomp[4] === true) {
+    if (points.gte(1e96) || enccomp[4] === true) {
         enhancement4.style.backgroundColor = "rgba(21, 104, 212, 1)"
     } else {enhancement4.style.backgroundColor = "black"}
     if (points.gte(1.5e157) || enccomp[5] === true) {
@@ -337,19 +363,22 @@ setInterval(() => {
     if (points.gte("1e345") || enccomp[7] === true) {
         enhancement7.style.backgroundColor = "rgba(21, 104, 212, 1)"
     } else {enhancement7.style.backgroundColor = "black"}
+    if (points.gte("1e2300") || enccomp[9] === true) {
+        enhancement9.style.backgroundColor = "rgba(21, 104, 212, 1)"
+    } else {enhancement9.style.backgroundColor = "black"}
     
     if (enccomp[4] === true) {
-        costbyte_enhancementmult = new Decimal(0.96 ** Math.floor(buyedbyte))
-        enhancement4.innerHTML = "bought<br>Byte upgrade cheaper per upgrade bought<br>currently:/" + format(1/(0.96 ** Math.floor(buyedbyte)), 4);
-    } else {enhancement4.innerHTML = "cost:1NoTg<br>Byte upgrade cheaper per upgrade bought<br>currently:/" + format(1/(0.96 ** Math.floor(buyedbyte)), 4);}
+        costbyte_enhancementmult = new Decimal(0.94 ** Math.floor(buyedbyte))
+        enhancement4.innerHTML = "bought<br>Byte upgrade cheaper per upgrade bought<br>currently:/" + format(1/(0.94 ** Math.floor(buyedbyte)), 4);
+    } else {enhancement4.innerHTML = "cost:1UTg<br>Byte upgrade cheaper per upgrade bought<br>currently:/" + format(1/(0.94 ** Math.floor(buyedbyte)), 4);}
     if (enccomp[5] === true) {
-        points_add_enhancementmult5 = points.pow(1/16)
+        points_add_enhancementmult5 = points.pow(1/14)
         enhancement5.innerHTML = "bought<br>Points boosts itself<br>currently:x" + format(points.pow(1/16));
     } else {enhancement5.innerHTML = "cost:15UQq points<br>Points boosts itself<br>currently:x" + format(points.pow(1/16));}
     if (enccomp[7] === true) {
-        upg3_base_enhancementmult = 1 + ((buyed1 + buyed2 + buyed3 + buyed4 + buyedbyte) ** 1/15)
-        enhancement7.innerHTML = "bought<br>Upgrade 3 is better based on total upgrades bought<br>currently:x" + format(1 + ((buyed1 + buyed2 + buyed3 + buyed4 + buyedbyte) ** 1/20));
-    } else {enhancement7.innerHTML = "cost:1e345 points<br>Upgrade 3 is better based on total upgrades bought<br>currently:x" + format(1 + ((buyed1 + buyed2 + buyed3 + buyed4 + buyedbyte) ** 1/20));}
+        upg3_base_enhancementmult = 1 + ((buyed1r + buyed2 + buyed3 + buyed4 + buyedbyte) ** 1/100)
+        enhancement7.innerHTML = "bought<br>Upgrade 3 is better based on total upgrades bought<br>currently:x" + format(1 + ((buyed1r + buyed2 + buyed3 + buyed4 + buyedbyte) ** 1/100));
+    } else {enhancement7.innerHTML = "cost:1e345 points<br>Upgrade 3 is better based on total upgrades bought<br>currently:x" + format(1 + ((buyed1r + buyed2 + buyed3 + buyed4 + buyedbyte) ** 1/100));}
 }, 5);
 
 
@@ -382,13 +411,11 @@ upgrade1.addEventListener('click', async () => {
     let iterations = 0;
     while (points.gte(costr1)) {
         points = points.sub(costr1);
-        points_add = points_add.add(1);
         cost1 = cost1.times(scl1);
         scl1 = scl1.times(1.002);
         buyed1 += 1;
         costr1 = cost1.times(cost1mult).times(cost1_enhancementmult);
-        points_add_achievementmult = points_add_achievementmult.times(1.02)
-        if (++iterations % 500 === 0) await yieldToBrowser();
+        if (++iterations % 1000 === 0) await yieldToBrowser();
     }
     tile13_seconds_played = 0;
 });
@@ -401,7 +428,7 @@ upgrade2.addEventListener('click', async () => {
         scl2 = scl2.times(1.05);
         buyed2 += 1;
         costr2 = cost2.times(cost2mult).times(cost3_enhancementmult);
-        if (++iterations % 500 === 0) await yieldToBrowser();
+        if (++iterations % 1000 === 0) await yieldToBrowser();
     }
 });
 
@@ -413,7 +440,7 @@ upgrade3.addEventListener('click', async () => {
         scl3 = scl3.times(1.3);
         buyed3 += 1;
         costr3 = cost3.times(cost3mult).times(cost3_enhancementmult);
-        if (++iterations % 500 === 0) await yieldToBrowser();
+        if (++iterations % 1000 === 0) await yieldToBrowser();
     }
 });
 
@@ -421,14 +448,26 @@ upgrade4.addEventListener('click', async () => {
     let iterations = 0;
     while (points.gte(costr4)) {
         points = points.sub(costr4);
-        cost1mult = cost1mult.times(0.95);
-        cost2mult = cost2mult.times(0.95);
-        cost3mult = cost3mult.times(0.95);
+        cost1mult = cost1mult.times(0.85);
+        cost2mult = cost2mult.times(0.85);
+        cost3mult = cost3mult.times(0.85);
         cost4 = cost4.times(scl4);
         scl4 = scl4.times(1.85);
         buyed4 += 1;
         costr4 = cost4.times(cost4mult).times(cost4_enhancementmult).times(cost4_achievementmult);
-        if (++iterations % 500 === 0) await yieldToBrowser();
+        if (++iterations % 1000 === 0) await yieldToBrowser();
+    }
+});
+
+upgrade5.addEventListener('click', async () => {
+    let iterations = 0;
+    while (points.gte(costr5)) {
+        points = points.sub(costr5);
+        cost5 = cost5.times(scl5);
+        scl5 = scl5.times(1e20);
+        buyed5 += 1;
+        costr5 = cost5.times(cost5mult).times(cost5_enhancementmult);
+        if (++iterations % 1000 === 0) await yieldToBrowser();
     }
 });
 
@@ -443,19 +482,18 @@ byte.addEventListener('click', async () => {
             sclbyte = sclbyte.times(1.01)
         } 
         costrbyte = costbyte.times(costbytemult).times(costbyte_enhancementmult);
-        if (++iterations % 500 === 0) await yieldToBrowser();
+        if (++iterations % 1000 === 0) await yieldToBrowser();
     }
 });
 
 polybit.addEventListener('click', () => {
     if (buyedbyte < costbit) return;
     
-    buyedpoly += 1
-    bytepower = bytepower.times(1.02);
+    buyedbit += 1
+    bytepower = bytepower.times(1.05);
     costbit += bitscale;
     bitscale += 5
 
-    points = new Decimal(1);
     points_add = new Decimal(0);
     points_add_add = new Decimal(1);
     points_add_add_add = new Decimal(1.2);
@@ -463,35 +501,42 @@ polybit.addEventListener('click', () => {
     cost2 = new Decimal(2500);
     cost3 = new Decimal(360000); 
     cost4 = new Decimal(10000000000);
+    cost5 = new Decimal("1e2000");
     costbyte = new Decimal(10);
     buyed1 = 0; 
     buyed2 = 0; 
     buyed3 = 0; 
     buyed4 = 0; 
+    buyed5 = 0;
     buyedbyte = 0;
     scl1 = new Decimal(1.05)
     scl2 = new Decimal(2.2)
     scl3 = new Decimal(4.6)
     scl4 = new Decimal(11)
+    scl5 = new Decimal("1e400")
     sclbyte = new Decimal(3)
     cost1mult = new Decimal(1); 
     cost2mult = new Decimal(1);
     cost3mult = new Decimal(1); 
-    cost4mult = new Decimal(1);
+    cost4mult = new Decimal(1);    
+    cost5mult = new Decimal(1);
     bytemult = new Decimal(1)
     points_add_achievementmult = new Decimal(1)
+    points = new Decimal(1);
 });
 
-byte.addEventListener('mouseenter', () => { tooltipbyte.style.display = 'inline'; bytedisplay.style.display = 'inline'; polybit.style.marginTop = "20px"; });
-byte.addEventListener('mouseleave', () => { tooltipbyte.style.display = 'none'; bytedisplay.style.display = 'none'; polybit.style.marginTop = "75px"; });
-upgrade1.addEventListener('mouseenter', () => { tooltip1.style.display = 'inline'; polybit.style.marginTop = "47.5px"; });
-upgrade1.addEventListener('mouseleave', () => { tooltip1.style.display = 'none'; polybit.style.marginTop = "75px"; });
-upgrade2.addEventListener('mouseenter', () => { tooltip2.style.display = 'inline'; polybit.style.marginTop = "47.5px"; });
-upgrade2.addEventListener('mouseleave', () => { tooltip2.style.display = 'none'; polybit.style.marginTop = "75px"; });
-upgrade3.addEventListener('mouseenter', () => { tooltip3.style.display = 'inline'; polybit.style.marginTop = "47.5px"; });
-upgrade3.addEventListener('mouseleave', () => { tooltip3.style.display = 'none'; polybit.style.marginTop = "75px"; });
-upgrade4.addEventListener('mouseenter', () => { tooltip4.style.display = 'inline'; polybit.style.marginTop = "47.5px"; });
-upgrade4.addEventListener('mouseleave', () => { tooltip4.style.display = 'none'; polybit.style.margin = "75px"; });
+byte.addEventListener('mouseenter', () => { tooltipbyte.style.display = 'inline'; bytedisplay.style.display = 'inline'; upgrade5.style.marginTop = "20px"; });
+byte.addEventListener('mouseleave', () => { tooltipbyte.style.display = 'none'; bytedisplay.style.display = 'none'; upgrade5.style.marginTop = "75px"; });
+upgrade1.addEventListener('mouseenter', () => { tooltip1.style.display = 'inline'; upgrade5.style.marginTop = "47.5px"; });
+upgrade1.addEventListener('mouseleave', () => { tooltip1.style.display = 'none'; upgrade5.style.marginTop = "75px"; });
+upgrade2.addEventListener('mouseenter', () => { tooltip2.style.display = 'inline'; upgrade5.style.marginTop = "47.5px"; });
+upgrade2.addEventListener('mouseleave', () => { tooltip2.style.display = 'none'; upgrade5.style.marginTop = "75px"; });
+upgrade3.addEventListener('mouseenter', () => { tooltip3.style.display = 'inline'; upgrade5.style.marginTop = "47.5px"; });
+upgrade3.addEventListener('mouseleave', () => { tooltip3.style.display = 'none'; upgrade5.style.marginTop = "75px"; });
+upgrade4.addEventListener('mouseenter', () => { tooltip4.style.display = 'inline'; upgrade5.style.marginTop = "47.5px"; });
+upgrade4.addEventListener('mouseleave', () => { tooltip4.style.display = 'none'; upgrade5.style.marginTop = "75px"; });
+polybit.addEventListener('mouseenter', () => { tooltipbit.style.display = 'inline'; tooltipbit.style.margin = '0px'; });
+polybit.addEventListener('mouseleave', () => { tooltipbit.style.display = 'none'; tooltipbit.style.margin = '0px'; });
 
 enhancement1.addEventListener('click', async () => {
     if (points.lt(1e31) || enccomp[1] === true) return;
@@ -522,15 +567,15 @@ enhancement3.addEventListener('click', async () => {
     points = points.sub(2e64);
     enhancement5.style.display = "inline";
     points_add_add_add_enhancementmult = points_add_add_add_enhancementmult.times(1.25)
-    enhancement3.innerHTML = "bought<br>upgrade 2 effect 20% better";
+    enhancement3.innerHTML = "bought<br>upgrade 2 effect 25% better";
     enhancement3.style.outline = "7.5px solid rgba(0, 66, 152, 1)";
     enhancement3.style.backgroundColor = "rgba(21, 104, 212, 1)";
     enccomp[3] = true;
 });
 
 enhancement4.addEventListener('click', async () => {
-    if (points.lt(1e117) || enccomp[4] === true) return;
-    points = points.sub(1e117);
+    if (points.lt(1e96) || enccomp[4] === true) return;
+    points = points.sub(1e96);
     enhancement6.style.display = "inline";
     enhancement7.style.display = "inline";
     enhancement4.innerHTML = "bought<br>Byte upgrade cheaper per 2 bought<br>currently:/1.00";
@@ -575,8 +620,26 @@ enhancement8.addEventListener('click', async () => {
 enhancement7.addEventListener('click', async () => {
     if (points.lt('1e345') || enccomp[7] === true) return;
     points = points.sub('1e345');
+    enhancement9.style.display = "inline";
     enhancement7.innerHTML = "bought<br>Upgrade 3 is better based on total upgrades bought<br>currently:x1.00";
     enhancement7.style.outline = "7.5px solid rgba(0, 66, 152, 1)";
     enhancement7.style.backgroundColor = "rgba(21, 104, 212, 1)";
     enccomp[7] = true;
 });
+
+enhancement9.addEventListener('click', async () => {
+    if (points.lt('1e2300') || enccomp[9] === true) return;
+    points = points.sub('1e2300');
+    buyed1_enhancementmult += 1
+    enhancement9.innerHTML = "bought<br>Upgrade 1 gain +1";
+    enhancement9.style.outline = "7.5px solid rgba(0, 66, 152, 1)";
+    enhancement9.style.backgroundColor = "rgba(21, 104, 212, 1)";
+    enccomp[9] = true;
+});
+
+
+
+
+
+tile1.addEventListener('mouseenter', () => { tile1info.style.display = 'inline';});
+tile1.addEventListener('mouseleave', () => { tile1info.style.display = 'none'});

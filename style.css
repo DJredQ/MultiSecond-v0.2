@@ -27,6 +27,12 @@ button{
 
 #polybit{
     margin: 75px;
+    margin-bottom: 0px;
+}
+
+#upgrade5{
+    margin: 75px;
+    margin-bottom: 0px;
 }
 
 #byteupgrade {
@@ -37,12 +43,16 @@ button{
     margin: 3px;
 }
 
-#tooltip1, #tooltip2, #tooltip3, #tooltip4, #tooltipbyte, #bytedisplay{
+#tooltip1, #tooltip2, #tooltip3, #tooltip4, #tooltipbyte, #bytedisplay, #tooltipbit{
     top: 10px;
     left: 10px;
     font-size: 1.5em;
     margin: 0px;
     display: none;
+}
+
+#tooltipbit{
+    font-size: 2em;
 }
 
 #achievements {
@@ -71,8 +81,22 @@ button{
 #enhancement6 { top: 625px; left: 530px; display: none;}
 #enhancement7 { top: 625px; left: 810px; display: none;}
 #enhancement8 { top: 625px; left: 1090px; display: none;}
+#enhancement9 { top: 800px; left: 810px; display: none;}
 
+.achievementbox {
+    position: relative;
+}
 
+.tileinfo {
+    position: absolute;
+    bottom: 180px;
+    left: 7px;
+    outline: 3px solid rgb(118, 118, 118);
+    background-color: rgb(255, 255, 255);
+    font-size: 2em;
+    width: 165px;
+    display: none;
+}
 
 .row {
     display: flex;
