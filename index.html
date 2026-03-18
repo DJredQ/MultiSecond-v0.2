@@ -10,11 +10,13 @@
 <body>
     <div id="tabbuttons">
         <button id="mainscreenbutton">Main</button>
-        <button id="achievementbutton">Achivements</button>
+        <button id="achievementbutton">Achievements</button>
         <button id="enhancementbutton">Enhancements</button>
+        <button id="settingsbutton">Settings</button>
     </div>
+    <div id="achievementnotifier">Achievement:</div>
     <div>
-        <p id="achievementdisplay">achievemts provide a multiplier to<br>point gain: 1.00x</p>
+        <p id="achievementdisplay">achievements provide a multiplier to<br>point gain: 1.00x</p>
     </div>
     <div id="mainscreen">
         <p id="display">0</p>
@@ -40,6 +42,7 @@
         <div class="buttons">
             <button id="upgrade5">cost:10<br>Upgrade 1 gain +1</button>
         </div>
+            <div id="tooltip5"></div>
         <div>
             <button id="polybit">get a polybit for 6 Byte upgrades<br>Reset your progress for a better byte multiplier</button>
         </div>
@@ -49,29 +52,70 @@
         <div class="row" id="row1">
             <div class="achievementbox" id="achievement1box">
                 <div id="tile1" class="tileincomplete"><img src="achievement_images/achievement1.png"></div>
-                <div class="tileinfo" id="tile1info">test test testtest</div>
+                <div class="tileinfo" id="tile1info"><b>First time?</b><br>Buy upgrade 1 for the first time</div>
             </div>
             <div class="achievementbox" id="achievement2box">
                 <div id="tile2" class="tileincomplete"><img src="achievement_images/achievement2.png"></div>
-                <div class="tileinfo" id="tile2info">test test testtest</div>
+                <div class="tileinfo" id="tile2info"><b>Second word play</b><br>Buy upgrade 2 for the first time<br><i>reward: Upgrade 1 is better everytime it's bought<br>currently: 1.00x</i></div>
             </div>
-        
-            <div id="tile3" class="tileincomplete"><img src="achievement_images/achievement3.png"></div>
-            <div id="tile4" class="tileincomplete"><img src="achievement_images/achievement4.png"></div>
-            <div id="tile5" class="tileincomplete"><img src="achievement_images/achievement5.png"></div>
-            <div id="tile6" class="tileincomplete"><img src="achievement_images/achievement6.png"></div>
-            <div id="tile7" class="tileincomplete"><img src="achievement_images/achievement7.png"></div>
-            <div id="tile8" class="tileincomplete"><img src="achievement_images/achievement8.png"></div>
+            <div class="achievementbox" id="achievement3box">
+                <div id="tile3" class="tileincomplete"><img src="achievement_images/achievement3.png"></div>
+                <div class="tileinfo" id="tile3info"><b>>100 hours</b><br>Buy upgrade 3 for the first time<br><i>reward: Upgrade 3 base +0.02</i></div>
+            </div>
+            <div class="achievementbox" id="achievement4box">
+                <div id="tile4" class="tileincomplete"><img src="achievement_images/achievement4.png"></div>
+                <div class="tileinfo" id="tile4info"><b>Slight discount</b><br>Buy upgrade 4 for the first time<br><i>reward: Upgrade 4 is 5% cheaper</i></div>
+            </div>
+            <div class="achievementbox" id="achievement5box">
+                <div id="tile5" class="tileincomplete"><img src="achievement_images/achievement5.png"></div>
+                <div class="tileinfo" id="tile5info"><b>A bit good</b><br>Buy the byte upgrade for the first time</div>
+            </div>
+            <div class="achievementbox" id="achievement6box">
+                <div id="tile6" class="tileincomplete"><img src="achievement_images/achievement6.png"></div>
+                <div class="tileinfo" id="tile6info"><b>CentiSecond</b><br>Play for 100 seconds</div>
+            </div>
+            <div class="achievementbox" id="achievement7box">
+                <div id="tile7" class="tileincomplete"><img src="achievement_images/achievement7.png"></div>
+                <div class="tileinfo" id="tile7info"><b>Nessisary upgrades</b><br>Have a total of 500 upgrades bought</div>
+            </div>
+            <div class="achievementbox" id="achievement8box">
+                <div id="tile8" class="tileincomplete"><img src="achievement_images/achievement8.png"></div>
+                <div class="tileinfo" id="tile8info"><b>Superefficiency</b><br>Have your points/second be more then 5Qd<br></div>
+            </div>
         </div>
         <div class="row" id="row2">
-            <div id="tile9" class="tileincomplete"><img src="achievement_images/achievement9.png"></div>
-            <div id="tile10" class="tileincomplete"><img src="achievement_images/achievement10.png"></div>
-            <div id="tile11" class="tileincomplete"><img src="achievement_images/achievement11.png"></div>
-            <div id="tile12" class="tileincomplete"><img src="achievement_images/achievement12.png"></div>
-            <div id="tile13" class="tileincomplete"><img src="achievement_images/achievement13.png"></div>
-            <div id="tile14" class="tileincomplete"><img src="achievement_images/achievement14.png"></div>
-            <div id="tile15" class="tileincomplete"><img src="achievement_images/achievement15.png"></div>
-            <div id="tile16" class="tileincomplete"><img src="achievement_images/achievement16.png"></div>
+            <div class="achievementbox" id="achievement1box">
+                <div id="tile9" class="tileincomplete"><img src="achievement_images/achievement9.png"></div>
+                <div class="tileinfo" id="tile9info"><b>8 bit</b><br>Have 64 byte upgrades</div>
+            </div>
+            <div class="achievementbox" id="achievement10box">
+                <div id="tile10" class="tileincomplete"><img src="achievement_images/achievement10.png"></div>
+                <div class="tileinfo" id="tile10info"><b>Shouldn't this be free?</b><br>Have 20 upgrade 4s</div>
+            </div>
+            <div class="achievementbox" id="achievement11box">
+                <div id="tile11" class="tileincomplete"><img src="achievement_images/achievement11.png"></div>
+                <div class="tileinfo" id="tile11info"><b>e41 - 31</b><br>Have 3.1e41 points<br><i>reward: Point gain x4.131</i></div>
+            </div>
+            <div class="achievementbox" id="achievement13box">
+                <div id="tile12" class="tileincomplete"><img src="achievement_images/achievement12.png"></div>
+                <div class="tileinfo" id="tile12info"><b>Advancing</b><br>Buy an enhancement</div>
+            </div>
+            <div class="achievementbox" id="achievement13box">
+                <div id="tile13" class="tileincomplete"><img src="achievement_images/achievement13.png"></div>
+                <div class="tileinfo" id="tile13info"><b>Pacience is a virtue</b><br>Avoid buying upgrade 1 for 3 entire minutes</div>
+            </div>
+            <div class="achievementbox" id="achievement14box">
+                <div id="tile14" class="tileincomplete"><img src="achievement_images/achievement14.png"></div>
+                <div class="tileinfo" id="tile14info"><b>30 years until upgrade 2</b><br>Get to 1B points without upgrade 2<br><i>reward: Upgrade 2 is 20% better</i></div>
+            </div>
+            <div class="achievementbox" id="achievement15box">
+                <div id="tile15" class="tileincomplete"><img src="achievement_images/achievement15.png"></div>
+                <div class="tileinfo" id="tile15info"><b>GIVE ME A BASE INCREASE</b><br>Get to 1Sx points without upgrade 3<br><i>reward: Upgrade 3 is 10% better</i></div>
+            </div>
+            <div class="achievementbox" id="achievement16box">
+                <div id="tile16" class="tileincomplete"><img src="achievement_images/achievement16.png"></div>
+                <div class="tileinfo" id="tile16info"><b>Polyapocalypse</b><br>Have 9 polybits</div>
+            </div>
         </div>
     </div>
     <div id="enhancements">
@@ -84,6 +128,11 @@
         <button id="enhancement7">cost:1e350 points<br>Upgrade 3 is better based on total upgrades bought<br>currently:x1.00</button>
         <button id="enhancement8">cost:300SpSa points<br>Upgrade 2 effect ^1.2</button>
         <button id="enhancement9">cost:1e2300 points<br>Upgrade 1 gain +1</button>
+        <button id="enhancement10">cost:1e2900 points<br>Unlock upgrade 5</button>
+        <button id="enhancement11">cost:1e3495 points<br>Upgrade 5 affects upgrade 2 gain with reduced power<br>currenty:+0.00</button>
+    </div>
+    <div id="settings">
+        <button id="hardreset">HARD RESET</button>
     </div>
     <script src="script.js"></script>
 </body>
